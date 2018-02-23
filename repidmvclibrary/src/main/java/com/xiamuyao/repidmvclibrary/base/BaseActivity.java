@@ -30,8 +30,8 @@ import com.xiamuyao.repidmvclibrary.manager.ActivitysManagement;
  */
 public abstract class BaseActivity extends AppCompatActivity {
     private ConstraintLayout mTitleLayout;
-    private TextView mTitleTitle, mSunbtitle, mTitleLeftText, mTitleRightText;
-    private ImageView mTitleLeftImg, mTitleRightimgOne, mTitleRightimgTwo;
+//    private TextView mTitleTitle, mSunbtitle, mTitleLeftText, mTitleRightText;
+//    private ImageView mTitleLeftImg, mTitleRightimgOne, mTitleRightimgTwo;
     /**
      * 封装得等待框
      */
@@ -57,7 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         //添加当前Activity到堆栈中
         ActivitysManagement.getManagement().addActivity(this);
         initObject(savedInstanceState);
-        initTitle();
+//        initTitle();
         isOpenNeedPermission(permissions);
         loadDialog = new LoadingDialog(this, R.style.loading_dialog);
         if (BuildConfig.DEBUG) {
@@ -77,65 +77,65 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * 进行公共头的封装
-     * 如果后续需要其他get方法然后在补充
-     */
-    public void initTitle() {
-        mTitleLayout = findViewById(R.id.title_layout);
-        mTitleTitle = findViewById(R.id.title_title);
-        mSunbtitle = findViewById(R.id.sunbtitle);
-        mTitleLeftImg = findViewById(R.id.title_LeftImg);
-        mTitleLeftText = findViewById(R.id.title_LeftText);
-        mTitleRightText = findViewById(R.id.title_RightText);
-        mTitleRightimgOne = findViewById(R.id.title_RightimgOne);
-        mTitleRightimgTwo = findViewById(R.id.title_RightimgTwo);
-    }
-
-    public void setTitle(String title) {
-        mTitleTitle.setVisibility(View.VISIBLE);
-        mTitleTitle.setText(title);
-    }
-
-    public void setSubTitle(String subTitle) {
-        mSunbtitle.setVisibility(View.VISIBLE);
-        mSunbtitle.setText(subTitle);
-    }
-
-    public void setLeftImage(int resid) {
-        mTitleLeftImg.setBackgroundResource(resid);
-        mTitleLeftImg.setVisibility(View.VISIBLE);
-        mTitleLeftImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
-
-    public void setLeftText(String leftText, View.OnClickListener onClickListener) {
-        mTitleLeftText.setVisibility(View.VISIBLE);
-        mTitleLeftText.setText(leftText);
-        mTitleLeftText.setOnClickListener(onClickListener);
-    }
-
-    public void setRightText(String RightText, View.OnClickListener onClickListener) {
-        mTitleRightText.setVisibility(View.VISIBLE);
-        mTitleRightText.setText(RightText);
-        mTitleRightText.setOnClickListener(onClickListener);
-    }
-
-    public void setRightimgOne(int resId, View.OnClickListener onClickListener) {
-        mTitleRightimgOne.setVisibility(View.VISIBLE);
-        mTitleRightimgOne.setImageResource(resId);
-        mTitleRightimgOne.setOnClickListener(onClickListener);
-    }
-
-    public void setRightimgTwo(int resId, View.OnClickListener onClickListener) {
-        mTitleRightimgTwo.setVisibility(View.VISIBLE);
-        mTitleRightimgTwo.setImageResource(resId);
-        mTitleRightimgTwo.setOnClickListener(onClickListener);
-    }
+//    /**
+//     * 进行公共头的封装
+//     * 如果后续需要其他get方法然后在补充
+//     */
+//    public void initTitle() {
+//        mTitleLayout = findViewById(R.id.title_layout);
+//        mTitleTitle = findViewById(R.id.title_title);
+//        mSunbtitle = findViewById(R.id.sunbtitle);
+//        mTitleLeftImg = findViewById(R.id.title_LeftImg);
+//        mTitleLeftText = findViewById(R.id.title_LeftText);
+//        mTitleRightText = findViewById(R.id.title_RightText);
+//        mTitleRightimgOne = findViewById(R.id.title_RightimgOne);
+//        mTitleRightimgTwo = findViewById(R.id.title_RightimgTwo);
+//    }
+//
+//    public void setTitle(String title) {
+//        mTitleTitle.setVisibility(View.VISIBLE);
+//        mTitleTitle.setText(title);
+//    }
+//
+//    public void setSubTitle(String subTitle) {
+//        mSunbtitle.setVisibility(View.VISIBLE);
+//        mSunbtitle.setText(subTitle);
+//    }
+//
+//    public void setLeftImage(int resid) {
+//        mTitleLeftImg.setBackgroundResource(resid);
+//        mTitleLeftImg.setVisibility(View.VISIBLE);
+//        mTitleLeftImg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+//    }
+//
+//    public void setLeftText(String leftText, View.OnClickListener onClickListener) {
+//        mTitleLeftText.setVisibility(View.VISIBLE);
+//        mTitleLeftText.setText(leftText);
+//        mTitleLeftText.setOnClickListener(onClickListener);
+//    }
+//
+//    public void setRightText(String RightText, View.OnClickListener onClickListener) {
+//        mTitleRightText.setVisibility(View.VISIBLE);
+//        mTitleRightText.setText(RightText);
+//        mTitleRightText.setOnClickListener(onClickListener);
+//    }
+//
+//    public void setRightimgOne(int resId, View.OnClickListener onClickListener) {
+//        mTitleRightimgOne.setVisibility(View.VISIBLE);
+//        mTitleRightimgOne.setImageResource(resId);
+//        mTitleRightimgOne.setOnClickListener(onClickListener);
+//    }
+//
+//    public void setRightimgTwo(int resId, View.OnClickListener onClickListener) {
+//        mTitleRightimgTwo.setVisibility(View.VISIBLE);
+//        mTitleRightimgTwo.setImageResource(resId);
+//        mTitleRightimgTwo.setOnClickListener(onClickListener);
+//    }
 
     public abstract int getLayout();
 

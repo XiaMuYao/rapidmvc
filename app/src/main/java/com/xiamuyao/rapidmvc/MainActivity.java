@@ -3,11 +3,37 @@ package com.xiamuyao.rapidmvc;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.xiamuyao.repidmvclibrary.base.BaseActivity;
+
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public int getLayout() {
+        return 0;
+    }
+
+    @Override
+    public void initObject(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public void initListener() {
+
+    }
+
+    @Override
+    public void GetFirstNetMessage() {
+
     }
 }
