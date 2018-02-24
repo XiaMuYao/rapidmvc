@@ -49,7 +49,6 @@ public class NetHelp {
      * @param url  请求url
      */
     public void GetNet(final int What, String url) {
-        if (AppContext.getInstance().isNetworkConnected()) {
             OkGo.<String>get(AppConfig.URL_Base + url)
                     .tag(this)
                     .execute(new StringCallback() {
@@ -72,9 +71,7 @@ public class NetHelp {
                             netInterface.doError(What, response.code(), response.message(), response);
                         }
                     });
-        } else {
-            Toast.makeText(AppContext.getInstance(), "请求失败 请检查网络", Toast.LENGTH_SHORT).show();
-        }
+
     }
 
     /**

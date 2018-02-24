@@ -12,8 +12,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
-import com.example.xiamuyao.mydevelop.AppContext;
-import com.example.xiamuyao.mydevelop.R;
+
+import com.xiamuyao.repidmvclibrary.AppContext;
+import com.xiamuyao.repidmvclibrary.R;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -90,21 +91,21 @@ public class DeviceUtil {
 
     }
 
-    /**
-     * @author WangJie 增加head的高度到自适配高度沉浸式
-     */
-    public static void loginheight(View view) {
-        // int statusa= loginll.getHeight()+ getStatusHeight( activity);
-        if (PRE_CUPCAKE && !"OPPO".equals(Build.BRAND)) {
-            mLayouTop = (RelativeLayout) view
-                    .findViewById(R.id.title_layout);
-            int height = DensityUtil.dipToPx(AppContext.getInstance(), 50) + getStatusHeight(AppContext.getInstance());
-            ViewGroup.LayoutParams linearParams = mLayouTop
-                    .getLayoutParams();
-            linearParams.height = height;
-            mLayouTop.setLayoutParams(linearParams);
-        }
-    }
+//    /**
+//     * @author WangJie 增加head的高度到自适配高度沉浸式
+//     */
+//    public static void loginheight(View view) {
+//        // int statusa= loginll.getHeight()+ getStatusHeight( activity);
+//        if (PRE_CUPCAKE && !"OPPO".equals(Build.BRAND)) {
+//            mLayouTop = (RelativeLayout) view
+//                    .findViewById(R.id.title_layout);
+//            int height = DensityUtil.dipToPx(AppContext.getInstance(), 50) + getStatusHeight(AppContext.getInstance());
+//            ViewGroup.LayoutParams linearParams = mLayouTop
+//                    .getLayoutParams();
+//            linearParams.height = height;
+//            mLayouTop.setLayoutParams(linearParams);
+//        }
+//    }
 
     /**
      * @param activity
