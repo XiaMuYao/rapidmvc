@@ -9,6 +9,7 @@ import android.support.v4.BuildConfig;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.xiamuyao.repidmvclibrary.Net.NetHelp;
 import com.xiamuyao.repidmvclibrary.R;
 import com.xiamuyao.repidmvclibrary.UItil.AppApplicationMgr;
+import com.xiamuyao.repidmvclibrary.View.LoadingDialog;
 import com.xiamuyao.repidmvclibrary.manager.ActivitysManagement;
 
 /**
@@ -27,18 +29,15 @@ import com.xiamuyao.repidmvclibrary.manager.ActivitysManagement;
  * 修订历史：
  * ================================================
  */
-public abstract class BaseActivity extends AppCompatActivity  {
+public abstract class BaseActivity extends AppCompatActivity {
     private ConstraintLayout mTitleLayout;
     private TextView mTitleTitle, mSunbtitle, mTitleLeftText, mTitleRightText;
     private ImageView mTitleLeftImg, mTitleRightimgOne, mTitleRightimgTwo;
-    /**
-     * 权限请求码
-     */
-    private int request_UPDATA = 100;
     protected NetHelp netHelp = NetHelp.getNethelp();
-    //是否还有更多
-    private boolean HaveMore = false;
-    public String[] permissions = {};
+    /**
+     * 封装得等待框
+     */
+    public LoadingDialog loadDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +49,24 @@ public abstract class BaseActivity extends AppCompatActivity  {
         setContentView(getLayout());
         //添加当前Activity到堆栈中
         ActivitysManagement.getManagement().addActivity(this);
+        loadDialog = new LoadingDialog(this, R.style.loading_dialog);
         initObject(savedInstanceState);
         initTitle();
-        isOpenNeedPermission(permissions);
+        if (BuildConfig.DEBUG) {
+            initView();
+            initData();
+            initListener();
+            GetFirstNetMessage();
+        } else {
+            try {
+                initView();
+                initData();
+                initListener();
+                GetFirstNetMessage();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -115,14 +129,30 @@ public abstract class BaseActivity extends AppCompatActivity  {
         mTitleRightimgTwo.setOnClickListener(onClickListener);
     }
 
+    public void setTitHight(int height) {
+        ViewGroup.LayoutParams layoutParams = mTitleLayout.getLayoutParams();
+        layoutParams.height = height;
+        mTitleLayout.setLayoutParams(layoutParams);
+    }
+
     public abstract int getLayout();
+
 
     abstract public void initObject(Bundle savedInstanceState);
 
+    /**
+     * 初始化View
+     */
     abstract public void initView();
 
+    /**
+     * 初始化数据
+     */
     abstract public void initData();
 
+    /**
+     * 初始化监听
+     */
     abstract public void initListener();
 
     /**
@@ -130,19 +160,21 @@ public abstract class BaseActivity extends AppCompatActivity  {
      */
     abstract public void GetFirstNetMessage();
 
-
     /**
-     * 是否打开了需要的权限，如果没有就开启
-     * 在那个页面需要什么权限就请求什么权限，不要再一开始请求所有权限
+     * 取消等待框
      */
-    public void isOpenNeedPermission(String[] permissions) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            for (String str : permissions) {
-                if (!AppApplicationMgr.hasPermission(this, str)) {
-                    ActivityCompat.requestPermissions(this, permissions, request_UPDATA);
+    public void dismissLoadDialog() {
+        if (isFinishing()) {
+            return;
+        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (null != loadDialog && loadDialog.isShowing()) {
+                    loadDialog.hide();
                 }
             }
-        }
+        });
     }
 
     @Override

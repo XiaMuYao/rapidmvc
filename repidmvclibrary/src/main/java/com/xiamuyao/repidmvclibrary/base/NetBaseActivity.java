@@ -20,10 +20,10 @@ import static com.xiamuyao.repidmvclibrary.Net.NetHelp.*;
  * ================================================
  */
 public abstract class NetBaseActivity extends BaseActivity implements NetInterface {
-    @Override
-    public void initListener() {
-        NetHelp.netInterface = this;
-    }
+    /**
+     * 是否还有更多
+     */
+    private boolean HaveMore = false;
 
     @Override
     public void doSuccess(int what, String response, Response<String> stringResponse) {
