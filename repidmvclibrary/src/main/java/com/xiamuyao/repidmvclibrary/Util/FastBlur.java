@@ -1,4 +1,4 @@
-package com.xiamuyao.repidmvclibrary.UItil;
+package com.xiamuyao.repidmvclibrary.Util;
 
 import android.graphics.Bitmap;
 

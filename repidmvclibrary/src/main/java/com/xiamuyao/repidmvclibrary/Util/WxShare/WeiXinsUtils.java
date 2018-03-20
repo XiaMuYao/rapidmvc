@@ -1,4 +1,4 @@
-package com.xiamuyao.repidmvclibrary.UItil.WxShare;//package com.example.xiamuyao.mydevelop.UItil.WxShare;
+package com.xiamuyao.repidmvclibrary.Util.WxShare;//package com.example.xiamuyao.mydevelop.UItil.WxShare;
 //
 //import android.graphics.Bitmap;
 //import android.graphics.Bitmap.CompressFormat;

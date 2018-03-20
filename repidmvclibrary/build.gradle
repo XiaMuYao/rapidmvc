@@ -2,26 +2,19 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-
-
-
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -30,15 +23,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //Md风格控件
     implementation 'com.android.support:design:26.1.0'
     //recyclerview
     compile 'com.android.support:recyclerview-v7:26.1.0'
     //沉浸式状态栏管理
-    compile 'com.gyf.barlibrary:barlibrary:2.2.8'
+    compile 'com.gyf.barlibrary:barlibrary:2.3.0'
     //Eventbus
     compile 'org.greenrobot:eventbus:3.0.0'
     //网络请求
-    compile 'com.lzy.net:okgo:3.0.2'
+    compile 'com.lzy.net:okgo:3.0.4'
     //约束布局
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

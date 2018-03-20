@@ -12,7 +12,7 @@ import com.lzy.okgo.request.PostRequest;
 import com.lzy.okgo.request.base.Request;
 import com.xiamuyao.repidmvclibrary.AppConfig;
 import com.xiamuyao.repidmvclibrary.AppContext;
-import com.xiamuyao.repidmvclibrary.UItil.LogUtil;
+import com.xiamuyao.repidmvclibrary.Util.LL;
 
 import java.io.File;
 import java.util.List;
@@ -97,7 +97,7 @@ public class NetHelp {
                     @Override
                     public void onSuccess(Response<String> response) {
                         netInterface.doSuccess(What, response.body(), response);
-                        LogUtil.d("走网络", "走网络");
+                        LL.d("走网络", "走网络");
                     }
 
                     /**
@@ -107,7 +107,7 @@ public class NetHelp {
                     @Override
                     public void onCacheSuccess(Response<String> response) {
                         super.onCacheSuccess(response);
-                        LogUtil.d("读取缓存", "读取缓存");
+                        LL.d("读取缓存", "读取缓存");
                         netInterface.doCacheSuccess(What, response.body(), response);
                     }
 

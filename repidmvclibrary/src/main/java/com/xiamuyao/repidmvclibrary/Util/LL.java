@@ -1,4 +1,4 @@
-package com.xiamuyao.repidmvclibrary.UItil;
+package com.xiamuyao.repidmvclibrary.Util;
 
 import android.text.TextUtils;
 
@@ -11,7 +11,7 @@ import com.xiamuyao.repidmvclibrary.AppConfig;
  * =========================
  * 说明：Log工具
  */
-public class LogUtil {
+public class LL {
     private static final boolean DEBUG = AppConfig.DEBUG;
 
     /**

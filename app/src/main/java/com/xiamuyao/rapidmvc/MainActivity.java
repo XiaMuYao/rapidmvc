@@ -1,29 +1,19 @@
 package com.xiamuyao.rapidmvc;
 
-import android.renderscript.Short2;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.lzy.okgo.model.Progress;
-import com.lzy.okgo.model.Response;
-import com.lzy.okgo.request.base.Request;
-import com.xiamuyao.repidmvclibrary.Net.NetHelp;
-import com.xiamuyao.repidmvclibrary.Net.NetInterface;
+import com.xiamuyao.repidmvclibrary.Util.LL;
+import com.xiamuyao.repidmvclibrary.Util.SpUtils;
 import com.xiamuyao.repidmvclibrary.base.BaseActivity;
-import com.xiamuyao.repidmvclibrary.base.NetBaseActivity;
 
 public class MainActivity extends BaseActivity {
 
-    private Button yincang, xianshi;
 
+    private Button mButton;
 
     @Override
     public int getLayout() {
@@ -37,27 +27,23 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        yincang = findViewById(R.id.yincang);
-        xianshi = findViewById(R.id.xianshi);
+        mButton = findViewById(R.id.mButton);
     }
 
     @Override
     public void initData() {
-
+        LL.d(this.toString(), "我打印的是什么");
     }
 
     @Override
     public void initListener() {
-        yincang.setOnClickListener(new View.OnClickListener() {
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismissLoadDialog();
-            }
-        });
-        xianshi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadDialog.show();
+                SpUtils.put(mContext, "int数据", "shuju");
+                Object mO = SpUtils.get(mContext, "int数据", "默认");
+                LL.e("nishish", String.valueOf(mO));
+                Log.e("nishish", "onClick: "+String.valueOf(mO));
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.xiamuyao.repidmvclibrary.UItil;
+package com.xiamuyao.repidmvclibrary.Util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,7 +36,7 @@ public class FileSizeUtil {
         } catch (Exception e) {
             e.printStackTrace();
             file = null;
-            LogUtil.e("获取文件大小", "获取失败!");
+            LL.e("获取文件大小", "获取失败!");
         }
         file = null;
         return FormetFileSize(blockSize, sizeType);
@@ -59,7 +59,7 @@ public class FileSizeUtil {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            LogUtil.e("获取文件大小", "获取失败!");
+            LL.e("获取文件大小", "获取失败!");
         }
         return FormetFileSize(blockSize);
     }
@@ -79,7 +79,7 @@ public class FileSizeUtil {
             size = fis.available();
         } else {
             file.createNewFile();
-            LogUtil.e("获取文件大小", "文件不存在!");
+            LL.e("获取文件大小", "文件不存在!");
         }
         return size;
     }
@@ -156,7 +156,7 @@ public class FileSizeUtil {
             default:
                 break;
         }
-        LogUtil.i("size", fileSizeLong + "");
+        LL.i("size", fileSizeLong + "");
         return fileSizeLong;
     }
 }

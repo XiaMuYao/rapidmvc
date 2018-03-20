@@ -1,4 +1,7 @@
-package com.xiamuyao.repidmvclibrary.UItil.WxShare;//package com.example.xiamuyao.mydevelop.UItil.WxShare;
+//package com.xiamuyao.repidmvclibrary.UItil.WxShare;
+//
+//import android.animation.ObjectAnimator;
+//import android.widget.PopupWindow;package com.example.xiamuyao.mydevelop.UItil.WxShare;
 //
 //import android.app.Activity;
 //import android.content.Context;
@@ -18,23 +21,20 @@ package com.xiamuyao.repidmvclibrary.UItil.WxShare;//package com.example.xiamuya
 //import android.widget.PopupWindow;
 //import android.widget.TextView;
 //
-//import com.bumptech.glide.Glide;
-//import com.nineoldandroids.animation.ObjectAnimator;
-//import com.tencent.mm.sdk.openapi.IWXAPI;
-//
-//import info.yihua.manager.AppContext;
-//import info.yihua.manager.R;
-//import info.yihua.manager.UIHelper;
-//import info.yihua.manager.base.BaseActivity;
-//import info.yihua.manager.bean.ShareBean;
+//import com.xiamuyao.repidmvclibrary.AppContext;
+//import com.xiamuyao.repidmvclibrary.R;
+//import com.xiamuyao.repidmvclibrary.base.BaseActivity;
 //
 ///**
-// * XiaMuYao
-// * XiaMuYaodqx@gmail.com
-// * 2016/5/5
-// * =========================
-// * 说明：
+// * ================================================
+// * 作    者：夏沐尧  Github地址：https://github.com/XiaMuYaoDQX
+// * 版    本：1.0
+// * 创建日期： 2016/5/5
+// * 描    述：请求url拼接
+// * 修订历史：
+// * ================================================
 // */
+//
 //public class WeiXinSharePopupWindow extends PopupWindow {
 //    View mMenuView;
 //    LinearLayout friend, friend_dou, ll_url;

@@ -1,5 +1,7 @@
 package com.xiamuyao.repidmvclibrary;
 
+import java.lang.annotation.ElementType;
+
 /**
  * XiaMuYao
  * XiaMuYaodqx@gmail.com
@@ -13,9 +15,8 @@ public class AppConfig {
         QA, ONLINE
     }
 
-    public static final boolean DEBUG = true;   //log的开关
     public static final RunType URL_TYPE = RunType.QA;  //打正式包时须改成 ONLINE
-
+    public static final boolean DEBUG = true;   //log的开关
     public static String URL_Base = UrlConstants.getApi(); //接口域名
 
 }
@@ -33,6 +34,7 @@ class UrlConstants {
     public static String getApi() {
         if (AppConfig.URL_TYPE == AppConfig.RunType.QA)
             return Api_Qq;
-        return Api_Online;
+        else
+            return Api_Online;
     }
 }

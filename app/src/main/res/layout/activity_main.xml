@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/titlemessage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/titlemessage"
     android:clipToPadding="true"
     android:fitsSystemWindows="true"
     tools:context="com.xiamuyao.rapidmvc.MainActivity">
@@ -14,23 +14,15 @@
         layout="@layout/layout_title" />
 
     <Button
-        android:id="@+id/xianshi"
+        android:id="@+id/mButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="118dp"
         android:layout_marginLeft="8dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginStart="8dp"
+        android:text="123"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="118dp" />
 
-    <Button
-        android:id="@+id/yincang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="68dp"
-        app:layout_constraintStart_toEndOf="@+id/xianshi"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        android:layout_marginLeft="24dp" />
 
 </android.support.constraint.ConstraintLayout>

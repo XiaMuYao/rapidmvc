@@ -1,4 +1,4 @@
-package com.xiamuyao.repidmvclibrary.UItil;
+package com.xiamuyao.repidmvclibrary.Util;
 
 
 import android.app.Activity;
@@ -69,7 +69,7 @@ public class DensityUtil {
     public static int getScreenWidth(Activity activity) {
         DisplayMetrics dm = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        LogUtil.i("zzj", dm.widthPixels + "");
+        LL.i("zzj", dm.widthPixels + "");
         return dm.widthPixels;
     }
 

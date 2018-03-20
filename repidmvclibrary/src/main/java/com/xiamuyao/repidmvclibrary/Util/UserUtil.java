@@ -1,4 +1,4 @@
-package com.xiamuyao.repidmvclibrary.UItil;//package com.example.xiamuyao.mydevelop.UItil;
+package com.xiamuyao.repidmvclibrary.Util;//package com.example.xiamuyao.mydevelop.UItil;
 //
 //import android.app.Activity;
 //import android.content.Intent;
