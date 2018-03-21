@@ -59,6 +59,12 @@ public class DensityUtil {
         return (int) (spValue * scale + 0.5f);
     }
 
+    /**
+     * 获取屏幕高度
+     *
+     * @param activity
+     * @return
+     */
     public static int getScreenHeight(Activity activity) {
         DisplayMetrics dm = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -66,13 +72,24 @@ public class DensityUtil {
         return dm.heightPixels;
     }
 
+    /**
+     * 获取屏幕宽度
+     *
+     * @param activity
+     * @return
+     */
     public static int getScreenWidth(Activity activity) {
         DisplayMetrics dm = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        LL.i("zzj", dm.widthPixels + "");
         return dm.widthPixels;
     }
 
+    /**
+     * 返回当前屏幕密度
+     *
+     * @param activity
+     * @return
+     */
     public static float getDensity(Activity activity) {
         DisplayMetrics metric = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
@@ -80,6 +97,12 @@ public class DensityUtil {
         return density;
     }
 
+    /**
+     * 返回状态栏高度
+     *
+     * @param mActivity
+     * @return
+     */
     public static int getNavigationBarHeight(Activity mActivity) {
         int height = 0;
         try {

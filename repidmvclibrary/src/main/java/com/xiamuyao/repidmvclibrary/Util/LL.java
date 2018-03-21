@@ -1,6 +1,7 @@
 package com.xiamuyao.repidmvclibrary.Util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.xiamuyao.repidmvclibrary.AppConfig;
 
@@ -13,120 +14,89 @@ import com.xiamuyao.repidmvclibrary.AppConfig;
  */
 public class LL {
     private static final boolean DEBUG = AppConfig.DEBUG;
-
     /**
-     * 输出任何消息 verbose
+     * 类名
      */
-    public static void v(String tag, String msg) {
-        if (DEBUG && !TextUtils.isEmpty(msg)) {
-            try {
-                android.util.Log.v(tag, msg);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void v(String tag, String msg, Throwable tr) {
-        if (DEBUG && !TextUtils.isEmpty(msg)) {
-            try {
-                android.util.Log.v(tag, msg, tr);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
+    static String className;
     /**
-     * 一般提示性的消息 information 会显示i、w和e的信息
+     * 方法名
      */
-    public static void i(String tag, String msg) {
-        if (DEBUG && !TextUtils.isEmpty(msg)) {
-            try {
-                android.util.Log.i(tag, msg);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void i(String tag, String msg, Throwable tr) {
-        if (DEBUG && !TextUtils.isEmpty(msg)) {
-            try {
-                android.util.Log.i(tag, msg, tr);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
+    static String methodName;
     /**
-     * 仅输出debug调试
+     * 行数
      */
-    public static void d(String tag, String msg) {
-        if (DEBUG && !TextUtils.isEmpty(msg)) {
-            try {
-                android.util.Log.d(tag, msg);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+    static int lineNumber;
+
+    private LL() {
     }
 
-    public static void d(String tag, String msg, Throwable tr) {
-        if (DEBUG && !TextUtils.isEmpty(msg)) {
-            try {
-                android.util.Log.d(tag, msg, tr);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
+    private static String createLog(String log) {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("方法名==>  ");
+        buffer.append(methodName);
+        buffer.append("  ClassName==>");
+        buffer.append("(").append(className).append(":").append(lineNumber).append(")");
+        buffer.append("  打印信息==>  ");
+        buffer.append(log);
+        return buffer.toString();
     }
 
-    /**
-     * 仅显示红色的错误信息
-     */
-    public static void e(String tag, String msg) {
-        if (DEBUG && !TextUtils.isEmpty(msg)) {
-            try {
-                android.util.Log.e(tag, msg);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+    private static void getMethodNames(StackTraceElement[] sElements) {
+        className = sElements[1].getFileName();
+        methodName = sElements[1].getMethodName();
+        lineNumber = sElements[1].getLineNumber();
     }
 
-    public static void e(String tag, String msg, Throwable tr) {
-        if (DEBUG && !TextUtils.isEmpty(msg)) {
-            try {
-                android.util.Log.e(tag, msg, tr);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
+    public static void e(String message) {
+        if (!DEBUG)
+            return;
+
+        // Throwable instance must be created before any methods
+        getMethodNames(new Throwable().getStackTrace());
+        Log.e(className, createLog(message));
     }
 
-    /**
-     * warning警告 会输出Log.e的信息 需要注意优化代码
-     */
-    public static void w(String tag, String msg) {
-        if (DEBUG && !TextUtils.isEmpty(msg)) {
-            try {
-                android.util.Log.w(tag, msg);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
+    public static void i(String message) {
+        if (!DEBUG)
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        Log.i(className, createLog(message));
     }
 
-    public static void w(String tag, String msg, Throwable tr) {
-        if (DEBUG && !TextUtils.isEmpty(msg)) {
-            try {
-                android.util.Log.w(tag, msg, tr);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+    public static void d(String message) {
+        if (!DEBUG)
+            return;
 
+        getMethodNames(new Throwable().getStackTrace());
+        Log.d(className, createLog(message));
     }
+
+    public static void v(String message) {
+        if (!DEBUG)
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        Log.v(className, createLog(message));
+    }
+
+    public static void w(String message) {
+        if (!DEBUG)
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        Log.w(className, createLog(message));
+    }
+
+    public static void wtf(String message) {
+        if (!DEBUG)
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        Log.wtf(className, createLog(message));
+    }
+
 }

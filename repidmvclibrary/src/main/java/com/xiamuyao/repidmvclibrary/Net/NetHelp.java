@@ -97,7 +97,6 @@ public class NetHelp {
                     @Override
                     public void onSuccess(Response<String> response) {
                         netInterface.doSuccess(What, response.body(), response);
-                        LL.d("走网络", "走网络");
                     }
 
                     /**
@@ -107,7 +106,6 @@ public class NetHelp {
                     @Override
                     public void onCacheSuccess(Response<String> response) {
                         super.onCacheSuccess(response);
-                        LL.d("读取缓存", "读取缓存");
                         netInterface.doCacheSuccess(What, response.body(), response);
                     }
 
@@ -125,125 +123,125 @@ public class NetHelp {
 
     }
 
-    /**
-     * 多个文件一个Key
-     *
-     * @param What         请求类别
-     * @param url          请求地址
-     * @param mListfileKey 多个文件的Key
-     * @param mListfile    多文件列列表(文件地址)
-     */
-    public void NetPost(final int What, String url, String mListfileKey, List<File> mListfile) {
-        if (AppContext.getInstance().isNetworkConnected()) {
-            OkGo.<String>post(url)
-                    .tag(this)
-                    .addFileParams(mListfileKey, mListfile)
-                    .execute(new StringCallback() {
-                        /**
-                         * 上传开始
-                         * @param request
-                         */
-                        @Override
-                        public void onStart(Request<String, ? extends Request> request) {
-                            super.onStart(request);
-                            netInterface.doStart(What, request);
-                        }
-
-                        /**
-                         * 上传完成
-                         * @param response
-                         */
-                        @Override
-                        public void onSuccess(Response<String> response) {
-                            netInterface.doSuccess(What, response.body(), response);
-                        }
-
-                        /**
-                         * 上传错误
-                         * @param response
-                         */
-                        @Override
-                        public void onError(Response<String> response) {
-                            super.onError(response);
-                            netInterface.doError(What, response.code(), response.message(), response);
-                        }
-
-                        /**
-                         * 上传进度
-                         * @param progress
-                         */
-                        @Override
-                        public void uploadProgress(Progress progress) {
-                            super.uploadProgress(progress);
-                            netInterface.doUploadProgress(What, progress);
-                        }
-                    });
-        } else {
-            Toast.makeText(AppContext.getInstance(), "请求失败 请检查网络", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    /**
-     * 一个文件对应一个Key
-     *
-     * @param What         请求类别
-     * @param url          请求地址
-     * @param mListfileKey 多个文件的Key
-     * @param mListfile    多文件列列表(文件地址)
-     */
-    public void NetPost(final int What, String url, List<String> mListfileKey, List<File> mListfile) {
-        if (AppContext.getInstance().isNetworkConnected()) {
-            final PostRequest request = OkGo.<String>post(url).tag(this);
-            for (int i = 0; i < mListfileKey.size(); i++) {
-                request.params(mListfileKey.get(i), mListfile.get(i));
-            }
-            request.execute(new StringCallback() {
-                /**
-                 * 上传开始
-                 *
-                 * @param request
-                 */
-                @Override
-                public void onStart(Request<String, ? extends Request> request) {
-                    super.onStart(request);
-                    netInterface.doStart(What, request);
-                }
-
-                /**
-                 * 上传完成
-                 *
-                 * @param response
-                 */
-                @Override
-                public void onSuccess(Response<String> response) {
-                    netInterface.doSuccess(What, response.body(), response);
-                }
-
-                /**
-                 * 上传错误
-                 *
-                 * @param response
-                 */
-                @Override
-                public void onError(Response<String> response) {
-                    super.onError(response);
-                    netInterface.doError(What, response.code(), response.message(), response);
-                }
-
-                /**
-                 * 上传进度
-                 *
-                 * @param progress
-                 */
-                @Override
-                public void uploadProgress(Progress progress) {
-                    super.uploadProgress(progress);
-                    netInterface.doUploadProgress(What, progress);
-                }
-            });
-        } else {
-            Toast.makeText(AppContext.getInstance(), "请求失败 请检查网络", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    /**
+//     * 多个文件一个Key
+//     *
+//     * @param What         请求类别
+//     * @param url          请求地址
+//     * @param mListfileKey 多个文件的Key
+//     * @param mListfile    多文件列列表(文件地址)
+//     */
+//    public void NetPost(final int What, String url, String mListfileKey, List<File> mListfile) {
+//        if (AppContext.getInstance().isNetworkConnected()) {
+//            OkGo.<String>post(url)
+//                    .tag(this)
+//                    .addFileParams(mListfileKey, mListfile)
+//                    .execute(new StringCallback() {
+//                        /**
+//                         * 上传开始
+//                         * @param request
+//                         */
+//                        @Override
+//                        public void onStart(Request<String, ? extends Request> request) {
+//                            super.onStart(request);
+//                            netInterface.doStart(What, request);
+//                        }
+//
+//                        /**
+//                         * 上传完成
+//                         * @param response
+//                         */
+//                        @Override
+//                        public void onSuccess(Response<String> response) {
+//                            netInterface.doSuccess(What, response.body(), response);
+//                        }
+//
+//                        /**
+//                         * 上传错误
+//                         * @param response
+//                         */
+//                        @Override
+//                        public void onError(Response<String> response) {
+//                            super.onError(response);
+//                            netInterface.doError(What, response.code(), response.message(), response);
+//                        }
+//
+//                        /**
+//                         * 上传进度
+//                         * @param progress
+//                         */
+//                        @Override
+//                        public void uploadProgress(Progress progress) {
+//                            super.uploadProgress(progress);
+//                            netInterface.doUploadProgress(What, progress);
+//                        }
+//                    });
+//        } else {
+//            Toast.makeText(AppContext.getInstance(), "请求失败 请检查网络", Toast.LENGTH_SHORT).show();
+//        }
+//
+//    }
+//
+//    /**
+//     * 一个文件对应一个Key
+//     *
+//     * @param What         请求类别
+//     * @param url          请求地址
+//     * @param mListfileKey 多个文件的Key
+//     * @param mListfile    多文件列列表(文件地址)
+//     */
+//    public void NetPost(final int What, String url, List<String> mListfileKey, List<File> mListfile) {
+//        if (AppContext.getInstance().isNetworkConnected()) {
+//            final PostRequest request = OkGo.<String>post(url).tag(this);
+//            for (int i = 0; i < mListfileKey.size(); i++) {
+//                request.params(mListfileKey.get(i), mListfile.get(i));
+//            }
+//            request.execute(new StringCallback() {
+//                /**
+//                 * 上传开始
+//                 *
+//                 * @param request
+//                 */
+//                @Override
+//                public void onStart(Request<String, ? extends Request> request) {
+//                    super.onStart(request);
+//                    netInterface.doStart(What, request);
+//                }
+//
+//                /**
+//                 * 上传完成
+//                 *
+//                 * @param response
+//                 */
+//                @Override
+//                public void onSuccess(Response<String> response) {
+//                    netInterface.doSuccess(What, response.body(), response);
+//                }
+//
+//                /**
+//                 * 上传错误
+//                 *
+//                 * @param response
+//                 */
+//                @Override
+//                public void onError(Response<String> response) {
+//                    super.onError(response);
+//                    netInterface.doError(What, response.code(), response.message(), response);
+//                }
+//
+//                /**
+//                 * 上传进度
+//                 *
+//                 * @param progress
+//                 */
+//                @Override
+//                public void uploadProgress(Progress progress) {
+//                    super.uploadProgress(progress);
+//                    netInterface.doUploadProgress(What, progress);
+//                }
+//            });
+//        } else {
+//            Toast.makeText(AppContext.getInstance(), "请求失败 请检查网络", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }

@@ -36,7 +36,7 @@ public class FileSizeUtil {
         } catch (Exception e) {
             e.printStackTrace();
             file = null;
-            LL.e("获取文件大小", "获取失败!");
+            LL.e("获取文件大小-获取失败!");
         }
         file = null;
         return FormetFileSize(blockSize, sizeType);
@@ -59,7 +59,7 @@ public class FileSizeUtil {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            LL.e("获取文件大小", "获取失败!");
+            LL.e("获取文件大小-获取失败!");
         }
         return FormetFileSize(blockSize);
     }
@@ -67,7 +67,7 @@ public class FileSizeUtil {
     /**
      * 获取指定文件大小
      *
-     * @param f
+     * @param file
      * @return
      * @throws Exception
      */
@@ -79,7 +79,7 @@ public class FileSizeUtil {
             size = fis.available();
         } else {
             file.createNewFile();
-            LL.e("获取文件大小", "文件不存在!");
+            LL.e("获取文件大小-文件不存在!");
         }
         return size;
     }
@@ -156,7 +156,7 @@ public class FileSizeUtil {
             default:
                 break;
         }
-        LL.i("size", fileSizeLong + "");
+        LL.i("size" + fileSizeLong);
         return fileSizeLong;
     }
 }

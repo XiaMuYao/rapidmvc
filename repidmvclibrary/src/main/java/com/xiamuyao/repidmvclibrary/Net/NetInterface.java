@@ -43,20 +43,20 @@ public interface NetInterface {
      */
     void doCacheSuccess(int what, String response, Response<String> stringResponse);
 
-    /**
-     * 文件上传开始
-     *
-     * @param what
-     * @param request
-     */
-    void doStart(int what, Request<String, ? extends Request> request);
-
-    /**
-     * 文件下载进度
-     *
-     * @param what
-     * @param progress
-     */
-    void doUploadProgress(int what, Progress progress);
+//    /**
+//     * 文件上传开始
+//     *
+//     * @param what
+//     * @param request
+//     */
+//    void doStart(int what, Request<String, ? extends Request> request);
+//
+//    /**
+//     * 文件下载进度
+//     *
+//     * @param what
+//     * @param progress
+//     */
+//    void doUploadProgress(int what, Progress progress);
 
 }

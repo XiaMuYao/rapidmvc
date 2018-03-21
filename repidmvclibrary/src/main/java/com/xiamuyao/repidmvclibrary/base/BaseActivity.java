@@ -8,6 +8,7 @@ import android.support.v4.BuildConfig;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,6 +45,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //沉浸式状态栏
         ImmersionBar.with(this).init();  //透明状态栏，不写默认透明色
+        //去除标题栏
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(getLayout());
         //添加当前Activity到堆栈中
         ActivitysManagement.getManagement().addActivity(this);
