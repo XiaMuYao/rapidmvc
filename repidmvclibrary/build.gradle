@@ -24,15 +24,19 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     //Md风格控件
-    implementation 'com.android.support:design:26.1.0'
+    api 'com.android.support:design:26.1.0'
     //recyclerview
-    compile 'com.android.support:recyclerview-v7:26.1.0'
+    api 'com.android.support:recyclerview-v7:26.1.0'
     //沉浸式状态栏管理
-    compile 'com.gyf.barlibrary:barlibrary:2.3.0'
+    api 'com.gyf.barlibrary:barlibrary:2.3.0'
     //Eventbus
-    compile 'org.greenrobot:eventbus:3.0.0'
+    api 'org.greenrobot:eventbus:3.0.0'
     //网络请求
-    compile 'com.lzy.net:okgo:3.0.4'
+    api 'com.lzy.net:okgo:3.0.4'
     //约束布局
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    //fastjson
+    api 'com.alibaba:fastjson:1.2.46'
+    //图片加载
+    api 'com.github.bumptech.glide:glide:4.6.1'
 }

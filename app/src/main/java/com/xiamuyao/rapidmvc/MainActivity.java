@@ -47,7 +47,6 @@ public class MainActivity extends BaseActivity implements NetInterface {
             public void onClick(View v) {
                 spTest();
                 startActivity(new Intent(mContext, Main2TestActivity.class));
-//                netHelp.GetNet(1, "http://blog.csdn.net/fuwei52331314/article/details/55823689");
             }
         });
     }

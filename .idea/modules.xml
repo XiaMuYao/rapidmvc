@@ -3,11 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://G:\Github\Android\rapidmvc\app\app.iml" filepath="G:\Github\Android\rapidmvc\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/rapidmvc.iml" filepath="$PROJECT_DIR$/rapidmvc.iml" />
-      <module fileurl="file://G:\Github\Android\rapidmvc\rapidmvc.iml" filepath="G:\Github\Android\rapidmvc\rapidmvc.iml" />
       <module fileurl="file://$PROJECT_DIR$/repidmvclibrary/repidmvclibrary.iml" filepath="$PROJECT_DIR$/repidmvclibrary/repidmvclibrary.iml" />
-      <module fileurl="file://G:\Github\Android\rapidmvc\repidmvclibrary\repidmvclibrary.iml" filepath="G:\Github\Android\rapidmvc\repidmvclibrary\repidmvclibrary.iml" />
     </modules>
   </component>
 </project>
