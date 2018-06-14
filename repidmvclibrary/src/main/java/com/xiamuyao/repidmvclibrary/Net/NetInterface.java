@@ -18,45 +18,27 @@ public interface NetInterface {
     /**
      * 成功回掉
      *
-     * @param what
-     * @param response
-     * @param stringResponse
+     * @param what 是什么请求
+     * @param jsonBody 返回json
+     * @param msg 显示的信息
      */
-    void doSuccess(int what, String response, Response<String> stringResponse);
+    void doSuccess(int what, String jsonBody,String msg);
 
     /**
      * 失败回掉
+     * code = 404 or > 500
      *
      * @param what
      * @param code
-     * @param message
-     * @param response
      */
-    void doError(int what, int code, String message, Response<String> response);
+    void doError(int what, int code);
 
     /**
-     * 读取网络数据成功回掉
+     * 读取缓存数据成功回掉
      *
      * @param what
      * @param response
      * @param stringResponse
      */
     void doCacheSuccess(int what, String response, Response<String> stringResponse);
-
-//    /**
-//     * 文件上传开始
-//     *
-//     * @param what
-//     * @param request
-//     */
-//    void doStart(int what, Request<String, ? extends Request> request);
-//
-//    /**
-//     * 文件下载进度
-//     *
-//     * @param what
-//     * @param progress
-//     */
-//    void doUploadProgress(int what, Progress progress);
-
 }

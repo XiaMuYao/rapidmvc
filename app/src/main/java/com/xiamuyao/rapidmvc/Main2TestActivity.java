@@ -44,17 +44,15 @@ public class Main2TestActivity extends BaseActivity implements NetInterface {
     }
 
 
+
+
     @Override
-    public void doSuccess(int what, String response, Response<String> stringResponse) {
-        switch (what) {
-            case 1:
-                LL.d(stringResponse.toString());
-                break;
-        }
+    public void doSuccess(int what, String jsonBody, String msg) {
+
     }
 
     @Override
-    public void doError(int what, int code, String message, Response<String> response) {
+    public void doError(int what, int code) {
 
     }
 

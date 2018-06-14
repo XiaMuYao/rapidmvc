@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.BuildConfig;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.xiamuyao.repidmvclibrary.BuildConfig;
 import com.xiamuyao.repidmvclibrary.Net.NetHelp;
 import com.xiamuyao.repidmvclibrary.R;
 import com.xiamuyao.repidmvclibrary.View.LoadingDialog;

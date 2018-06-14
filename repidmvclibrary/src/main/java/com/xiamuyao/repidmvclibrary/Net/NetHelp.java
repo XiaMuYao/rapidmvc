@@ -1,8 +1,10 @@
 package com.xiamuyao.repidmvclibrary.Net;
 
 
+import android.content.Context;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
@@ -31,7 +33,6 @@ import java.util.List;
 public class NetHelp {
 
     public static NetInterface netInterface;
-
     private static final NetHelp nethelp = new NetHelp(null);
 
     private NetHelp(NetInterface netInterface) {
@@ -49,29 +50,34 @@ public class NetHelp {
      * @param url  请求url
      */
     public void GetNet(final int What, String url) {
-            OkGo.<String>get(AppConfig.URL_Base + url)
-                    .tag(this)
-                    .execute(new StringCallback() {
-                        /**
-                         * 获取成功
-                         * @param response
-                         */
-                        @Override
-                        public void onSuccess(Response<String> response) {
-                            netInterface.doSuccess(What, response.body(), response);
+        OkGo.<String>get(AppConfig.URL_Base + url)
+                .tag(this)
+                .execute(new StringCallback() {
+                    /**
+                     * 获取成功
+                     * code = 200
+                     * 这里在构建之初 要和服务端预定好你们所有的code 200是成功无误 300可能是验证码错误？ 等等等等。。。。。
+                     * @param response
+                     */
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Msg mMsg = JSON.parseObject(response.body(), Msg.class);
+                        if (mMsg.getCode() == 200) {
+                            netInterface.doSuccess(What, response.body(), mMsg.getMsg());
                         }
+                    }
 
-                        /**
-                         * 获取错误
-                         * @param response
-                         */
-                        @Override
-                        public void onError(Response<String> response) {
-                            super.onError(response);
-                            netInterface.doError(What, response.code(), response.message(), response);
-                        }
-                    });
-
+                    /**
+                     * 获取错误
+                     * code 404 or >500
+                     * @param response
+                     */
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        netInterface.doError(What, response.code());
+                    }
+                });
     }
 
     /**
@@ -96,7 +102,10 @@ public class NetHelp {
                      */
                     @Override
                     public void onSuccess(Response<String> response) {
-                        netInterface.doSuccess(What, response.body(), response);
+                        Msg mMsg = JSON.parseObject(response.body(), Msg.class);
+                        if (mMsg.getCode() == 200) {
+                            netInterface.doSuccess(What, response.body(), mMsg.getMsg());
+                        }
                     }
 
                     /**
@@ -116,132 +125,47 @@ public class NetHelp {
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
-                        netInterface.doError(What, response.code(), response.message(), response);
+                        netInterface.doError(What, response.code());
                     }
                 });
 
 
     }
 
-//    /**
-//     * 多个文件一个Key
-//     *
-//     * @param What         请求类别
-//     * @param url          请求地址
-//     * @param mListfileKey 多个文件的Key
-//     * @param mListfile    多文件列列表(文件地址)
-//     */
-//    public void NetPost(final int What, String url, String mListfileKey, List<File> mListfile) {
-//        if (AppContext.getInstance().isNetworkConnected()) {
-//            OkGo.<String>post(url)
-//                    .tag(this)
-//                    .addFileParams(mListfileKey, mListfile)
-//                    .execute(new StringCallback() {
-//                        /**
-//                         * 上传开始
-//                         * @param request
-//                         */
-//                        @Override
-//                        public void onStart(Request<String, ? extends Request> request) {
-//                            super.onStart(request);
-//                            netInterface.doStart(What, request);
-//                        }
-//
-//                        /**
-//                         * 上传完成
-//                         * @param response
-//                         */
-//                        @Override
-//                        public void onSuccess(Response<String> response) {
-//                            netInterface.doSuccess(What, response.body(), response);
-//                        }
-//
-//                        /**
-//                         * 上传错误
-//                         * @param response
-//                         */
-//                        @Override
-//                        public void onError(Response<String> response) {
-//                            super.onError(response);
-//                            netInterface.doError(What, response.code(), response.message(), response);
-//                        }
-//
-//                        /**
-//                         * 上传进度
-//                         * @param progress
-//                         */
-//                        @Override
-//                        public void uploadProgress(Progress progress) {
-//                            super.uploadProgress(progress);
-//                            netInterface.doUploadProgress(What, progress);
-//                        }
-//                    });
-//        } else {
-//            Toast.makeText(AppContext.getInstance(), "请求失败 请检查网络", Toast.LENGTH_SHORT).show();
-//        }
-//
-//    }
-//
-//    /**
-//     * 一个文件对应一个Key
-//     *
-//     * @param What         请求类别
-//     * @param url          请求地址
-//     * @param mListfileKey 多个文件的Key
-//     * @param mListfile    多文件列列表(文件地址)
-//     */
-//    public void NetPost(final int What, String url, List<String> mListfileKey, List<File> mListfile) {
-//        if (AppContext.getInstance().isNetworkConnected()) {
-//            final PostRequest request = OkGo.<String>post(url).tag(this);
-//            for (int i = 0; i < mListfileKey.size(); i++) {
-//                request.params(mListfileKey.get(i), mListfile.get(i));
-//            }
-//            request.execute(new StringCallback() {
-//                /**
-//                 * 上传开始
-//                 *
-//                 * @param request
-//                 */
-//                @Override
-//                public void onStart(Request<String, ? extends Request> request) {
-//                    super.onStart(request);
-//                    netInterface.doStart(What, request);
-//                }
-//
-//                /**
-//                 * 上传完成
-//                 *
-//                 * @param response
-//                 */
-//                @Override
-//                public void onSuccess(Response<String> response) {
-//                    netInterface.doSuccess(What, response.body(), response);
-//                }
-//
-//                /**
-//                 * 上传错误
-//                 *
-//                 * @param response
-//                 */
-//                @Override
-//                public void onError(Response<String> response) {
-//                    super.onError(response);
-//                    netInterface.doError(What, response.code(), response.message(), response);
-//                }
-//
-//                /**
-//                 * 上传进度
-//                 *
-//                 * @param progress
-//                 */
-//                @Override
-//                public void uploadProgress(Progress progress) {
-//                    super.uploadProgress(progress);
-//                    netInterface.doUploadProgress(What, progress);
-//                }
-//            });
-//        } else {
-//            Toast.makeText(AppContext.getInstance(), "请求失败 请检查网络", Toast.LENGTH_SHORT).show();
-//        }
-//    }
+    /**
+     * 基本post请求。无缓存
+     *
+     * @param What 请求类别
+     * @param url  请求url
+     */
+    public void PostNet(final int What, String url, String jsonBody) {
+        OkGo.<String>post(AppConfig.URL_Base + url)
+                .tag(this)
+                .upJson(jsonBody)
+                .execute(new StringCallback() {
+                    /**
+                     * 获取成功
+                     * @param response
+                     */
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Msg mMsg = JSON.parseObject(response.body(), Msg.class);
+                        if (mMsg.getCode() == 200) {
+                            netInterface.doSuccess(What, response.body(), mMsg.getMsg());
+                        }
+                    }
+
+                    /**
+                     * 获取错误
+                     * @param response
+                     */
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        netInterface.doError(What, response.code());
+                    }
+                });
+
+    }
+
 }
